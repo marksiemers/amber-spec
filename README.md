@@ -14,7 +14,7 @@ dependencies:
   amber:
     github: amber-crystal/amber
   amber-spec:
-    github: amber-crystal/amber_spec
+    github: amber-crystal/amber-spec
 ```
 
 ## Usage
