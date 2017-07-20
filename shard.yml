@@ -1,0 +1,13 @@
+name: amber-spec
+version: 0.1.0
+
+authors:
+  - drujensen <drujensen@gmail.com>
+
+license: MIT
+
+dependencies:
+  amber:
+    github: Amber-Crystal/amber
+
+
