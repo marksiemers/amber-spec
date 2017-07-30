@@ -1,3 +1,3 @@
 require "spec"
 require "amber"
-require "../src/amber-spec"
+require "../src/amber_spec"
