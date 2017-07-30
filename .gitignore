@@ -1,3 +1,4 @@
 .shards/
 lib/
 .DS_Store
+shard.lock
