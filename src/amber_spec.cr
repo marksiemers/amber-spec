@@ -33,9 +33,9 @@ def process_request(request)
 end
 
 def build_main_handler
-  amber = Amber::Server.instance
-  amber.handler.prepare_pipelines
-  amber.handler
+  handler = Amber::Server.settings.handler
+  handler.prepare_pipelines
+  handler
 end
 
 def response
