@@ -8,6 +8,4 @@ license: MIT
 
 dependencies:
   amber:
-    github: Amber-Crystal/amber
-
-
+    github: amberframework/amber
