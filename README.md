@@ -12,9 +12,9 @@ version: 0.1.0
 
 dependencies:
   amber:
-    github: amber-crystal/amber
-  amber-spec:
-    github: amber-crystal/amber-spec
+    github: amberframework/amber
+  amber_spec:
+    github: amberframework/amber-spec
 ```
 
 ## Usage
@@ -22,7 +22,7 @@ dependencies:
 Just require it before your files in your `spec/spec_helper.cr`
 
 ```crystal
-require "amber-spec"
+require "amber_spec"
 ```
 
 ```crystal
