@@ -3,9 +3,14 @@ version: 0.1.0
 
 authors:
   - drujensen <drujensen@gmail.com>
+  - Elias J. Perez <eliasjpr@gmail.com>
+
+crystal: 0.23.1
 
 license: MIT
 
 dependencies:
-  amber:
-    github: amberframework/amber
+  selenium:
+    github: ysbaddaden/selenium-webdriver-crystal
+    branch: master
+
