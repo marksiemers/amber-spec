@@ -73,7 +73,7 @@ crystal spec
 
 - [  ] Add support for other webdrivers
 - [  ] Add more dsl methods similar to https://gist.github.com/zhengjia/428105
-- [  ] Add support for Chrome webdriver Disired Capabilities
+- [  ] Add support for Chrome webdriver Desired Capabilities
 - [  ] Add support for headless chrome
 - [  ] Make it more configurable
 
