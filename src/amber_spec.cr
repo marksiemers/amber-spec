@@ -1,43 +1,31 @@
 require "spec"
-require "amber"
+require "./amber_spec/system/**"
+require "./amber_spec/controller/*"
+require "./amber_spec/selenium_server"
+require "./amber_spec/spec"
 
-class Global
-  @@response : HTTP::Client::Response?
-
-  def self.response=(@@response)
-  end
-
-  def self.response
-    @@response
-  end
-end
-
-{% for method in %w(get head post put patch delete) %}
-  def {{method.id}}(path, headers : HTTP::Headers? = nil, body : String? = nil)
-    request = HTTP::Request.new("{{method.id}}".upcase, path, headers, body )
-    request.headers["Content-Type"] = Amber::Router::Params::URL_ENCODED_FORM
-    Global.response = process_request request
-  end
-{% end %}
-
-def process_request(request)
-  io = IO::Memory.new
-  response = HTTP::Server::Response.new(io)
-  context = HTTP::Server::Context.new(request, response)
-  main_handler = build_main_handler
-  main_handler.call context
-  response.close
-  io.rewind
-  client_response = HTTP::Client::Response.from_io(io, decompress: false)
-  Global.response = client_response
-end
-
-def build_main_handler
-  handler = Amber::Server.settings.handler
-  handler.prepare_pipelines
-  handler
-end
-
-def response
-  Global.response.not_nil!
+# System Testing is a level of the software testing where a
+# complete and integrated software is tested. The purpose of this
+# test is to evaluate the system's compliance with the specified requirements
+module AmberSpec
+  # Not all server implementations will support every WebDriver feature.
+  # Therefore, the client and server should use JSON objects with the properties
+  # listed below when describing which features a session supports.
+  class_property capabilities = {
+    browserName:              "chrome",
+    version:                  "",
+    platform:                 "ANY",
+    javascriptEnabled:        true,
+    takesScreenshot:          true,
+    handlesAlerts:            true,
+    databaseEnabled:          true,
+    locationContextEnabled:   true,
+    applicationCacheEnabled:  true,
+    browserConnectionEnabled: true,
+    cssSelectorsEnabled:      true,
+    webStorageEnabled:        true,
+    rotatable:                true,
+    acceptSslCerts:           true,
+    nativeEvents:             true,
+  }
 end
