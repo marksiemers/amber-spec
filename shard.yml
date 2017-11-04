@@ -13,4 +13,6 @@ dependencies:
   selenium:
     github: ysbaddaden/selenium-webdriver-crystal
     branch: master
-
+  amber:
+    github: amberframework/amber
+    branch: master
