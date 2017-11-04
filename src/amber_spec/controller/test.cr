@@ -1,11 +1,17 @@
 abstract class Spec::ControllerTestCase
-  HTTP_VERBS = %w(get head post put patch delete)
+  MODIFYING_HTTP_VERBS = %w(get head post put patch delete)
+  HTTP_VERBS           = %w(get head)
 
   macro inherited
-    {% for method in HTTP_VERBS %}
+
+	# Content type should be set for request that have body
+	# get requests do not have body so no need to have content type header
+    {% for method in MODIFYING_HTTP_VERBS %}
     def {{method.id}}(path, headers : HTTP::Headers? = nil, body : String? = nil)
       request = HTTP::Request.new("{{method.id}}".upcase, path, headers, body )
-      request.headers["Content-Type"] = Amber::Router::Params::URL_ENCODED_FORM
+      unless HTTP_VERBS.includes? method
+        request.headers["Content-Type"] = "application/x-www-form-urlencoded"
+      end
       Request.response = process_request request
     end
     {% end %}
