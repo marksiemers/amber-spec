@@ -1,6 +1,6 @@
 abstract class Spec::ControllerTestCase
-  MODIFYING_HTTP_VERBS = %w(post put patch)
-  HTTP_VERBS           = %w(get head delete)
+  MODIFYING_HTTP_VERBS = %w(get head post put patch delete)
+  HTTP_VERBS           = %w(get head)
 
   macro inherited
 
@@ -9,14 +9,9 @@ abstract class Spec::ControllerTestCase
     {% for method in MODIFYING_HTTP_VERBS %}
     def {{method.id}}(path, headers : HTTP::Headers? = nil, body : String? = nil)
       request = HTTP::Request.new("{{method.id}}".upcase, path, headers, body )
-      request.headers["Content-Type"] = "application/x-www-form-urlencoded"
-      Request.response = process_request request
-    end
-    {% end %}
-
-    {% for method in HTTP_VERBS %}
-    def {{method.id}}(path, headers : HTTP::Headers? = nil, body : String? = nil)
-      request = HTTP::Request.new("{{method.id}}".upcase, path, headers, body )
+      unless HTTP_VERBS.includes? method
+        request.headers["Content-Type"] = "application/x-www-form-urlencoded"
+      end
       Request.response = process_request request
     end
     {% end %}
