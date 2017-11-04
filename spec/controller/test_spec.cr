@@ -1,44 +1,61 @@
 require "../spec_helper"
 
-class TestCase < Spec::ControllerTestCase
+class FakeHandler
+  def initialize(argument = nil)
+    prepare_pipelines
+  end
+
+  def call(context)
+    # Does nothing
+  end
+
+  private def prepare_pipelines
+    # Does nothing
+  end
 end
 
-describe Spec::ControllerTestCase do
+class TestCase < AmberSpec::Controller::Test
+  def handler
+    @handler ||= FakeHandler.new
+  end
+end
+
+describe AmberSpec::Controller::Test do
   subject = TestCase.new
 
   describe "#get" do
-    it "execute with one argument" do
-      puts subject.get("/posts")
+    it "should return a HTTP::Client::Response" do
+      subject.get("/posts").should be_a HTTP::Client::Response
     end
   end
 
   describe "#head" do
-    it "execute with one argument" do
-      puts subject.head("/posts")
+    it "should return a HTTP::Client::Response" do
+      subject.head("/posts").should be_a HTTP::Client::Response
     end
   end
 
   describe "#post" do
-    it "execute with one argument" do
-      puts subject.post("/posts")
+    it "should return a HTTP::Client::Response" do
+      subject.post("/posts").should be_a HTTP::Client::Response
     end
   end
 
   describe "#put" do
-    it "execute with one argument" do
-      puts subject.put("/posts/1")
+    it "should return a HTTP::Client::Response" do
+      subject.put("/posts/1").should be_a HTTP::Client::Response
     end
   end
 
   describe "#patch" do
-    it "execute with one argument" do
-      puts subject.patch("/posts/1")
+    it "should return a HTTP::Client::Response" do
+      subject.patch("/posts/1").should be_a HTTP::Client::Response
     end
   end
 
   describe "#delete" do
-    it "execute with one argument" do
-      puts subject.delete("/posts/1")
+    it "should return a HTTP::Client::Response" do
+      subject.delete("/posts/1").should be_a HTTP::Client::Response
     end
   end
 
