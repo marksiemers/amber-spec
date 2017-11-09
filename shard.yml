@@ -12,5 +12,4 @@ license: MIT
 dependencies:
   selenium:
     github: ysbaddaden/selenium-webdriver-crystal
-    branch: master
-
+    version: ~> 0.3.0
